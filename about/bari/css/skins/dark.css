@@ -1,0 +1,220 @@
+/* ===================================================================== */
+/* Template Name : Modtion - Creative One Page Personal                  */
+/* Author        : Rietts Andreas Ruff                                   */
+/* Author URI    : https://themeforest.net/user/riettsruff               */
+/* Version       : 1.2                                                   */
+/* ===================================================================== */
+
+/*=======================================================================*/
+/* [ DARK SKIN ]                                                         */
+/*=======================================================================*/
+
+body,
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content .mfp-close,
+.pre-loader,
+#header #top-header.fixed,
+.main-content#about .content .profile-wrapper .profile-picture-and-button .button-wrapper .single-button-area a:after,
+.main-content#resume .content .download-resume-wrapper a.download-resume:after {
+  background: #191a1b;
+}
+
+body,
+#menu-overlay ul li a,
+#menu-overlay ul li a:before,
+.pre-loader .inner-pre-loader .loading-text,
+.main-content#about .content .description p .name,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group input:focus,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group textarea:focus {
+  color: #fff;
+}
+
+.separator .separator-rtl,
+.separator .separator-rtl:before,
+.separator .separator-ltr,
+.separator .separator-ltr:after,
+.project-popup,
+#header #top-header #top-header-left h4:before,
+#header #top-header #top-header-left h4:after,
+#header #top-header #top-header-right #hamburger-menu > span,
+.main-content .head-content h2:before,
+.main-content .head-content h2:after,
+.main-content#resume .content .skills-wrapper .single-grouping-skill > ul li.skill-heading h5:before,
+.main-content#resume .content .skills-wrapper .single-grouping-skill > ul li.skill-heading h5:after,
+.main-content#resume .content .skills-wrapper .single-grouping-skill > ul li.skill-body .single-skill .progress-wrapper,
+.main-content#resume .content .work-experience-wrapper .work-experience-heading .inner-work-experience-heading:before,
+.main-content#resume .content .work-experience-wrapper .work-experience-heading .inner-work-experience-heading:after,
+.main-content#resume .content .education-wrapper .education-heading .inner-education-heading:before,
+.main-content#resume .content .education-wrapper .education-heading .inner-education-heading:after,
+.main-content#resume .content .interests-and-hobbies-wrapper .interests-and-hobbies-heading .inner-interests-and-hobbies-heading:before,
+.main-content#resume .content .interests-and-hobbies-wrapper .interests-and-hobbies-heading .inner-interests-and-hobbies-heading:after,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group input,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group textarea {
+  background: #fff;
+}
+
+.separator .separator-rtl:after,
+.separator .separator-ltr:before,
+.pre-loader .inner-pre-loader .line,
+#header #top-header > .reading-indicator .indicator-progress,
+#header #head-intro .passion-section:before,
+#header #scroll-down:before,
+#header #scroll-down:after,
+.main-content#resume .content .skills-wrapper .single-grouping-skill > ul li.skill-body .single-skill .progress-wrapper .progress {
+  background: #FFC837;
+}
+
+#menu-overlay {
+  background: rgba(0, 0, 0, 0.97);
+}
+
+#menu-overlay ul li.active a,
+.project-popup .project-detail .button-wrapper a.visit-project,
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content .mfp-close,
+#header #top-header #top-header-left h4,
+#header #top-header #top-header-right ul#main-menu li.active a,
+#header #head-intro .name-section > span,
+.main-content .head-content h2,
+.main-content#about .content .profile-wrapper .general-info .grouping-profile-wrapper ul.single-grouping-profile li .label i,
+.main-content#about .content .profile-wrapper .general-info .social-media a.single-social-media,
+.main-content#about .content .profile-wrapper .general-info .fun-facts .single-fun-fact .fun-fact-icon,
+.main-content#about .content .profile-wrapper .general-info .fun-facts .single-fun-fact .fun-fact-title i,
+.main-content#about .content .profile-wrapper .profile-picture-and-button .button-wrapper .single-button-area a,
+.main-content#resume .content .skills-wrapper .single-grouping-skill > ul li.skill-heading,
+.main-content#resume .content .skills-wrapper .single-grouping-skill > ul li.skill-body .single-skill .skill-name i,
+.main-content#resume .content .work-experience-wrapper .work-experience-heading .inner-work-experience-heading,
+.main-content#resume .content .work-experience-wrapper .work-experience-body .single-work-experience .name-date-place .name,
+.main-content#resume .content .work-experience-wrapper .work-experience-body .single-work-experience .name-date-place .place i,
+.main-content#resume .content .education-wrapper .education-heading .inner-education-heading,
+.main-content#resume .content .education-wrapper .education-body .single-education ul li.name,
+.main-content#resume .content .education-wrapper .education-body .single-education ul li.place i,
+.main-content#resume .content .interests-and-hobbies-wrapper .interests-and-hobbies-heading .inner-interests-and-hobbies-heading,
+.main-content#resume .content .interests-and-hobbies-wrapper .interests-and-hobbies-body .single-interest-and-hobby > ul li.icon,
+.main-content#resume .content .interests-and-hobbies-wrapper .interests-and-hobbies-body .single-interest-and-hobby > ul li.name i,
+.main-content#resume .content .download-resume-wrapper a.download-resume,
+.main-content#services .content .services-wrapper .single-service > ul li.icon,
+.main-content#services .content .services-wrapper .single-service > ul li.name i,
+.main-content#portfolio .projects-wrapper .project-filters a.active,
+.main-content#portfolio .projects-wrapper .project-items .single-item .project-preview .overlay a.view-more,
+.main-content#portfolio .projects-wrapper .project-items .single-item .project-preview .overlay .image-info .project-name i,
+.main-content#contact .content .contact-info-wrapper .inner-contact-info-wrapper .single-contact-info > ul li.icon,
+.main-content#contact .content .contact-info-wrapper .inner-contact-info-wrapper .single-contact-info > ul li.name i,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group button[type="submit"] {
+  color: #FFC837;
+}
+
+#menu-overlay #close-menu-overlay,
+.project-popup,
+.project-popup .project-name {
+  color: #444;
+}
+
+.project-popup .project-name {
+  border-bottom-color: #e8e8e8;
+}
+
+.project-popup .project-detail .button-wrapper a.visit-project {
+  background: #444;
+}
+
+#header #scroll-down,
+.main-content#about .content .profile-wrapper .general-info .social-media a.single-social-media,
+.main-content#about .content .profile-wrapper .profile-picture-and-button .button-wrapper .single-button-area a,
+.main-content#resume .content .download-resume-wrapper a.download-resume,
+.main-content#portfolio .projects-wrapper .project-items .single-item .project-preview .overlay a.view-more,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group button[type="submit"] {
+  border-color: #FFC837;
+}
+
+.main-content#about .content .description p,
+.main-content#about .content .profile-wrapper .general-info .grouping-profile-wrapper ul.single-grouping-profile li .value,
+.main-content#about .content .profile-wrapper .general-info .fun-facts .single-fun-fact .fun-fact-value,
+.main-content#resume .content .skills-wrapper .single-grouping-skill > ul li.skill-body .single-skill .percentage,
+.main-content#resume .content .work-experience-wrapper .work-experience-body .single-work-experience .name-date-place .date,
+.main-content#resume .content .work-experience-wrapper .work-experience-body .single-work-experience .tasks,
+.main-content#resume .content .education-wrapper .education-body .single-education ul li.date,
+.main-content#services .content .services-wrapper .single-service > ul li.description,
+.main-content#portfolio .projects-wrapper .project-items .single-item .project-preview .overlay .image-info .project-tags,
+.main-content#contact .content .contact-info-wrapper .inner-contact-info-wrapper .single-contact-info > ul li.value,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group input,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group textarea {
+  color: #999;
+}
+
+.main-content#about .content .description p,
+.main-content#about .content .profile-wrapper .general-info .fun-facts {
+  border-left-color: rgba(255, 200, 55, 0.1);
+}
+
+.main-content#about .content .description p,
+.main-content#about .content .profile-wrapper .general-info .fun-facts,
+.main-content#resume .content .skills-wrapper .single-grouping-skill > ul,
+.main-content#resume .content .work-experience-wrapper .work-experience-body .single-work-experience > ul,
+.main-content#resume .content .education-wrapper .education-body .single-education > ul,
+.main-content#resume .content .interests-and-hobbies-wrapper .interests-and-hobbies-body,
+.main-content#services .content .services-wrapper .single-service > ul,
+.main-content#portfolio .projects-wrapper .project-items .single-item .project-preview,
+.main-content#contact .content .contact-info-wrapper .inner-contact-info-wrapper,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.main-content#about .content .profile-wrapper .profile-picture-and-button .profile-picture img {
+  border-right-color: rgba(255, 200, 55, 0.1);
+}
+
+.main-content#resume .content .skills-wrapper .single-grouping-skill > ul,
+.main-content#resume .content .work-experience-wrapper .work-experience-body .single-work-experience > ul,
+.main-content#resume .content .education-wrapper .education-body .single-education > ul,
+.main-content#resume .content .interests-and-hobbies-wrapper .interests-and-hobbies-body,
+.main-content#portfolio .projects-wrapper .project-items .single-item .project-preview {
+  border-bottom-color: rgba(255, 200, 55, 0.1);
+}
+
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group input:focus,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group textarea:focus {
+  border-bottom-color: #FFC837;
+}
+
+.main-content#resume .content .work-experience-wrapper .work-experience-body .single-work-experience .name-date-place .date,
+.main-content#resume .content .education-wrapper .education-body .single-education ul li.date {
+  background: rgba(255, 255, 255, 0.075);
+}
+
+.main-content#services .content .services-wrapper .single-service > ul,
+.main-content#contact .content .contact-info-wrapper .inner-contact-info-wrapper,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper {
+  border-top-color: rgba(255, 200, 55, 0.1);
+}
+
+.main-content#portfolio .projects-wrapper .project-items .single-item .project-preview .overlay {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group input,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group textarea {
+  border-bottom-color: rgba(255, 200, 55, 0.2);
+}
+
+.project-popup .project-detail .button-wrapper a.visit-project:after {
+  background: #444;
+}
+
+.project-popup .project-detail .button-wrapper a.visit-project,
+.project-popup .project-detail .button-wrapper a.visit-project:after {
+  border-color: #444;
+}
+
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group input,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group textarea {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.project-popup .project-detail .button-wrapper a.visit-project,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group button[type="submit"] {
+  background: transparent;
+}
+
+.main-content#portfolio .projects-wrapper .project-items .single-item .project-preview .overlay a.view-more:after,
+.main-content#contact .content .contact-form-wrapper .inner-contact-form-wrapper .form-wrapper form[name="contact"] .form-group button[type="submit"]:after {
+  background: #151617;
+}

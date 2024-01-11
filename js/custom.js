@@ -127,17 +127,21 @@ $(function() {
     }
 	});
 
-  $('#showreel-trigger').magnificPopup({
-		type: 'iframe',
-		mainClass: 'mfp-fade',
-		removalDelay: 160,
-		preloader: false,
-    fixedContentPos: false,
-    callbacks: {
-      beforeOpen: function() { $('body').addClass('overflow-hidden'); },
-      close: function() { $('body').removeClass('overflow-hidden'); }
-    }
-	});
+  $(document).ready(function() {
+    $('#showreel-trigger').magnificPopup({
+      type: 'iframe',
+      mainClass: 'mfp-fade',
+      removalDelay: 160,
+      preloader: false,
+      fixedContentPos: false,
+      callbacks: {
+        beforeOpen: function() { $('body').addClass('overflow-hidden'); },
+        close: function() { $('body').removeClass('overflow-hidden'); }
+      }
+    });
+  });
+  
+  
   // --------------------------------------------- //
   // Magnific Popup Video End
   // --------------------------------------------- //

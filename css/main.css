@@ -82,8 +82,9 @@
 }
 
 .showreel-image-1 {
-  background-image: url("../../bg.jpg");
+  background-image: url('https://i.ytimg.com/vi/qgj_PRgJHjc/maxresdefault.jpg');
 }
+
 
 .contactdata-item-1 {
   background-image: url("../img/svg/icon-contact-bg-1.svg");

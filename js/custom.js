@@ -130,6 +130,9 @@ $(function() {
   $(document).ready(function() {
     $('#showreel-trigger').magnificPopup({
       type: 'iframe',
+      title : 'Youtube Video Player',
+      frameborder : '0',
+      allow : 'accelerometer, autoplay, clipboard-write, encrypted-media, gyroscope, picture-in-picture, web-share',
       mainClass: 'mfp-fade',
       removalDelay: 160,
       preloader: false,

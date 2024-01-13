@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- Tambahkan link jQuery dan Magnific Popup CSS/JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+</head>
+<body>
+
+    <!-- Contoh elemen HTML dengan ID "showreel-trigger" -->
+    <a id="showreel-trigger" href="https://www.youtube.com/watch?v=SmFCWjmLDrg">Play Video</a>
+
+    <script>
+        $(document).ready(function() {
+            $('#showreel-trigger').magnificPopup({
+                type: 'iframe',
+                title: 'Youtube Video Player',
+                frameborder: '0',
+                allow: 'accelerometer, autoplay, clipboard-write, encrypted-media, gyroscope, picture-in-picture, web-share',
+                mainClass: 'mfp-fade',
+                removalDelay: 160,
+                preloader: false,
+                fixedContentPos: false,
+                callbacks: {
+                    beforeOpen: function() { $('body').addClass('overflow-hidden'); },
+                    close: function() { $('body').removeClass('overflow-hidden'); }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

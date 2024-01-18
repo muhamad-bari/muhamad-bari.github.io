@@ -9,8 +9,8 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background-color: #3498db;
-      /* Warna biru */
+      background-color: #3498db;/* Warna biru */
+      margin-bottom: 0px; /* Tinggi footer */
     }
 
     .custom-card {
@@ -28,6 +28,17 @@
     #askButton {
       width: 100%;
       /* Tombol memenuhi lebar card */
+    }
+
+    /* Styling untuk footer */
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #fff; /* Warna latar belakang putih */
+      padding: 0px;
+      text-align: center;
+      color: #000000; /* Warna teks biru */
     }
   </style>
 </head>
@@ -147,7 +158,18 @@
       }
     }
   </script>
-
+<!-- Footer -->
+<footer>
+  <p>All rights reservered &copy; Copyright <span id="currentYear"> </span><a href="index.html">Muhamad Bari</a></p>
+</footer>
+<script>
+  // Mengisi tahun saat ini secara dinamis
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+  
+  function answerQuestion() {
+    // ... (Fungsi answerQuestion() tetap sama)
+  }
+</script>
 </body>
 
 </html>

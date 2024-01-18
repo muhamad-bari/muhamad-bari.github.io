@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,88 +9,145 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background-color: #3498db; /* Warna biru */
+      background-color: #3498db;
+      /* Warna biru */
     }
 
     .custom-card {
-      max-width: 400px; /* Lebar maksimal card */
-      margin: auto; /* Pusatkan card di tengah halaman */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan */
-      border-radius: 15px; /* Border radius untuk membuat card lebih bulat */
+      max-width: 400px;
+      /* Lebar maksimal card */
+      margin: auto;
+      /* Pusatkan card di tengah halaman */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      /* Efek bayangan */
+      border-radius: 15px;
+      /* Border radius untuk membuat card lebih bulat */
     }
 
     /* Styling untuk button "Ask" */
     #askButton {
-      width: 100%; /* Tombol memenuhi lebar card */
+      width: 100%;
+      /* Tombol memenuhi lebar card */
     }
   </style>
 </head>
+
 <body>
 
-<div class="container mt-5">
-  <div class="card custom-card">
-    <div class="card-body">
-      <h1 class="card-title text-center">Magic Conch Shell</h1>
-      <form id="questionForm">
-        <div class="form-group">
-          <label for="question">Ask the Magic Conch Shell:</label>
-          <input type="text" class="form-control" id="question" placeholder="Type your question..." onkeydown="if (event.keyCode == 13) { event.preventDefault(); answerQuestion(); }">
+  <div class="container mt-5">
+    <div class="card custom-card">
+      <div class="card-body">
+        <h1 class="card-title text-center">Magic Conch Shell</h1>
+        <form id="questionForm">
+          <div class="form-group">
+            <label for="question">Ask anything to the Magic Conch Shell:</label>
+            <input type="text" class="form-control" id="question" placeholder="Type your question..."
+              onkeydown="if (event.keyCode == 13) { event.preventDefault(); answerQuestion(); }">
+            <input type="hidden" name="" id="hide">
+
+          </div>
+          <button type="button" class="btn btn-primary btn-block" id="askButton" onclick="answerQuestion()">Give me an
+            answer</button>
+        </form>
+        <div class="mt-3">
+          <h3 class="text-center">The Answer:</h3>
+          <p id="answer" class="text-center"></p>
         </div>
-        <button type="button" class="btn btn-primary btn-block" id="askButton" onclick="answerQuestion()">Ask</button>
-      </form>
-      <div class="mt-3">
-        <h3 class="text-center">Answer:</h3>
-        <p id="answer" class="text-center"></p>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Bootstrap JS and Popper.js -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<script>
-  function answerQuestion() {
-    // Array of possible answers
-    var answers = [
-      "Yes", "No", "Of Course", "Maybe Yes", "Maybe No",
-      "Maybe", "Absolutely Yes", "Absolutely No", "Big Yes", "Big No"
-    ];
-
-    // Get the input question
-    var question = document.getElementById("question").value.toLowerCase();
-
-    // Check for specific keywords in the question
-    if (question.includes("apakah")) {
-      // Answer for questions containing "apa"
-      var randomAnswer = answers[Math.floor(Math.random() * answers.length)];
-      document.getElementById("answer").innerText = randomAnswer;
-    } else if (question.includes("dimana")) {
-      // Answer for questions containing "dimana"
-      var dimanaAnswers = [
-        "here", "there", "near you", "on the right side", "on the left side",
-        "at the top", "under", "in front of", "behind"
+  <script>
+    function answerQuestion() {
+      // Array of possible answers
+      var answers = [
+        "Yes", "No", "Of Course", "Maybe Yes", "Maybe No",
+        "Maybe", "Absolutely Yes", "Absolutely No", "Big Yes", "Big No"
       ];
-      var randomDimanaAnswer = dimanaAnswers[Math.floor(Math.random() * dimanaAnswers.length)];
-      document.getElementById("answer").innerText = randomDimanaAnswer;
-    } else if (question.includes("kapan")) {
-      // Answer for questions containing "kapan"
-      var randomKapanAnswer = Math.floor(Math.random() * 10) + 1 + " days left";
-      var kapanResponses = [
-        randomKapanAnswer,
-        "soon",
-        "will never"
-      ];
-      var randomIndex = Math.floor(Math.random() * 3);
-      document.getElementById("answer").innerText = kapanResponses[randomIndex];
-    } else {
-      // Default answer for other questions
-      document.getElementById("answer").innerText = "Sorry, please ask anything in the context of Kapan, Apakah, or Dimana.";
+
+      // Get the input question
+      var question = document.getElementById("question").value.toLowerCase();
+      var hidden = document.getElementById("hide").value;
+
+      if (question == hidden) {
+        alert("U can't ask the same question")
+      }
+      else {
+        // Check for specific keywords in the question
+        if (question.includes("siapa")) {
+          // Answer for questions containing "kapan"
+          var siaparesponse = [
+            "Olaf", "Batman", "The man who is called Cogil", "Your Next Door", "Your Mom", "Stranger"
+          ];
+          var randomsiapa = siaparesponse[Math.floor(Math.random() * siaparesponse.length)];
+          document.getElementById("answer").innerText = randomsiapa;
+          document.getElementById("hide").value = question;
+        }
+        else if (question.includes("dimana")) {
+          // Answer for questions containing "dimana"
+          var dimanaAnswers = [
+            "here", "there", "near you", "on the right side", "on the left side",
+            "at the top", "under", "in front of", "behind"
+          ];
+          var randomDimanaAnswer = dimanaAnswers[Math.floor(Math.random() * dimanaAnswers.length)];
+          document.getElementById("answer").innerText = randomDimanaAnswer;
+          document.getElementById("hide").value = question
+        } else if (question.includes("kapan")) {
+          // Answer for questions containing "kapan"
+          var randomKapanAnswer = Math.floor(Math.random() * 10) + 1 + " days left";
+          var kapanResponses = [
+            randomKapanAnswer,
+            "soon",
+            "will never"
+          ];
+          var randomIndex = Math.floor(Math.random() * 3);
+          document.getElementById("answer").innerText = kapanResponses[randomIndex];
+          document.getElementById("hide").value = question
+        }
+        else if (question.includes("fuck")) {
+          // Answer for questions containing "kapan"
+          var fresponse = [
+            "Fuck you too",
+            "Go fuck yourself",
+            "I will tell your Mom"
+          ];
+          var randomf = fresponse[Math.floor(Math.random() * fresponse.length)];
+          document.getElementById("answer").innerText = randomf;
+          document.getElementById("hide").value = question;
+        }
+        else if (question.includes("love")) {
+          // Answer for questions containing "kapan"
+          var loveresponse = [
+            "Yes",
+            "Will never",
+            "Really?",
+            "Sure?",
+            "No"
+          ];
+          var randomlove = loveresponse[Math.floor(Math.random() * loveresponse.length)];
+          document.getElementById("answer").innerText = randomlove;
+          document.getElementById("hide").value = question;
+        }
+        else if (question.includes("apakah")) {
+          // Answer for questions containing "apa"
+          var randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+          document.getElementById("answer").innerText = randomAnswer;
+          document.getElementById("hide").value = question
+        }
+        else {
+          // Default answer for other questions
+          document.getElementById("answer").innerText = "Sorry, please ask anything in the context of Kapan, Apakah, Dimana, Siapa.";
+          document.getElementById("hide").value = question
+        }
+      }
     }
-  }
-</script>
+  </script>
 
 </body>
+
 </html>

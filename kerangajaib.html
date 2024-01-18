@@ -10,7 +10,6 @@
   <style>
     body {
       background-color: #3498db;/* Warna biru */
-      margin-bottom: 0px; /* Tinggi footer */
     }
 
     .custom-card {
@@ -30,16 +29,15 @@
       /* Tombol memenuhi lebar card */
     }
 
-    /* Styling untuk footer */
-    footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #fff; /* Warna latar belakang putih */
-      padding: 0px;
-      text-align: center;
-      color: #000000; /* Warna teks biru */
-    }
+    .footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: black;
+  text-align: center;
+  }
   </style>
 </head>
 
@@ -93,7 +91,7 @@
         if (question.includes("siapa")) {
           // Answer for questions containing "kapan"
           var siaparesponse = [
-            "Olaf", "Batman", "The man who is called Cogil", "Your Next Door", "Your Mom", "Stranger"
+            "Olaf", "Batman", "The man who is called Cogil", "Your Next Door", "Your Mom", "Stranger", "Your Best Friend", "Your Ex"
           ];
           var randomsiapa = siaparesponse[Math.floor(Math.random() * siaparesponse.length)];
           document.getElementById("answer").innerText = randomsiapa;
@@ -132,7 +130,7 @@
           document.getElementById("hide").value = question;
         }
         else if (question.includes("love")) {
-          // Answer for questions containing "kapan"
+          // Answer for questions containing "love"
           var loveresponse = [
             "Yes",
             "Will never",
@@ -159,17 +157,9 @@
     }
   </script>
 <!-- Footer -->
-<footer>
+<div class="footer">
   <p>All rights reservered &copy; Copyright <span id="currentYear"> </span><a href="index.html">Muhamad Bari</a></p>
-</footer>
-<script>
-  // Mengisi tahun saat ini secara dinamis
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
-  
-  function answerQuestion() {
-    // ... (Fungsi answerQuestion() tetap sama)
-  }
-</script>
+</div>
 </body>
 
 </html>

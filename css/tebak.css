@@ -107,3 +107,17 @@
     font-size: 1.8em;
     margin: 0.6em 0 1em 0;
   }
+  .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  .footer p {
+    margin: auto;
+  }

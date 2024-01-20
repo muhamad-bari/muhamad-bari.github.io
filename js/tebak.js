@@ -87,7 +87,7 @@ const matrixGenerator = (cardValues, size = 4) => {
      <div class="card-container" data-card-value="${cardValues[i].name}">
         <div class="card-before">?</div>
         <div class="card-after">
-        <img src="${cardValues[i].image}" class="image"/></div>
+        <img src="${cardValues[i].image}" class="image" style="max-width: 80%" "max-height: 80%"/></div>
      </div>
      `;
   }
@@ -180,3 +180,6 @@ const initializer = () => {
   console.log(cardValues);
   matrixGenerator(cardValues);
 };
+
+// Mengisi tahun saat ini secara dinamis
+document.getElementById('currentYear').textContent = new Date().getFullYear();

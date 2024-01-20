@@ -7,10 +7,16 @@
   body {
     background-color: #f4c531;
   }
+  .container {
+    max-width: 100%;
+  }
   .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     box-sizing: content-box;
-    width: 26.87em;
-    padding: 2.5em 3em;
+    max-width: 100%;
+    padding: 2.5rem 3rem;
     background-color: #ffffff;
     position: absolute;
     transform: translate(-50%, -50%);
@@ -23,8 +29,13 @@
     position: relative;
     width: 100%;
     display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
     gap: 0.6em;
   }
+  img {
+    max-width: 100%;
+    height: auto;
+}
   .stats-container {
     text-align: right;
     margin-bottom: 1.2em;
@@ -117,7 +128,32 @@
     text-align: center;
     padding: 0.5rem;
   }
-
   .footer p {
     margin: auto;
   }
+  /* Stles for large screens (desktops) */
+@media only screen and (min-width: 1200px) {
+  /* Add your styles for large screens here */
+  .wrapper {
+      width: 40em;
+  }
+  /* Add more styles as needed */
+}
+
+/* Styles for medium screens (tablets) */
+@media only screen and (max-width: 1199px) and (min-width: 768px) {
+  /* Add your styles for medium screens here */
+  .wrapper {
+      width: 30em;
+  }
+  /* Add more styles as needed */
+}
+
+/* Styles for small screens (phones) */
+@media only screen and (max-width: 767px) {
+  /* Add your styles for small screens here */
+  .wrapper {
+      width: 80%;
+  }
+  /* Add more styles as needed */
+}

@@ -47,10 +47,20 @@ const timeGenerator = () => {
   timeValue.innerHTML = `<span>Time:</span>${minutesValue}:${secondsValue}`;
 };
 
-//For calculating moves
 const movesCounter = () => {
-  movesCount += 1;
-  moves.innerHTML = `<span>Moves:</span>${movesCount}`;
+  // Cek apakah jumlah langkah sudah mencapai 15
+  if (movesCount < 15) {
+    movesCount += 1;
+    moves.innerHTML = `<span>Moves:</span>${movesCount}`;
+  }
+
+  // Tambahkan kondisi untuk menghentikan permainan jika movesCount mencapai 15
+  if (movesCount === 15) {
+    // Hentikan permainan atau tambahkan logika lain yang sesuai
+    result.innerHTML = `<h2>Game Over</h2>
+      <h4>Too many moves!</h4>`;
+    stopGame();
+  }
 };
 
 //Pick random objects from the items array

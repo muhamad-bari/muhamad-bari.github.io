@@ -161,11 +161,17 @@
         }
       }
     }
+    
   </script>
+  
   <!-- Footer -->
   <div class="footer">
-    <p>All rights reservered &copy; Copyright <span id="currentYear"> </span><a href="index.html">Muhamad Bari</a></p>
+    <p>All rights reservered &copy; Copyright <span id="currentYear"></span><a href="index.html"> Muhamad Bari</a></p>
   </div>
+  <script>
+    // Mengisi tahun saat ini secara dinamis
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
 </body>
 
 </html>

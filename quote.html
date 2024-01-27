@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quote Generator</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- FontAwesome CSS (Replace the version number with the latest version) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      transition: background-color 0.5s ease;
+    }
+
+    .container {
+        margin-top: 12rem;
+    }
+
+    #quote-card {
+      margin-top: 40px;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+      border-radius: 15px;
+    }
+
+    #generate-btn {
+      margin-top: 20px;
+    }
+
+    #author {
+      text-align: right;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+.large {
+  font-size: 44px;
+}
+
+#quote-icon {
+  color: inherit; /* Atur warna ikon sesuai dengan warna teks kontainer */
+}
+
+.footer {
+  position: fixed; 
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  text-align: center;
+  padding: 0.5rem;
+}
+.footer p {
+  margin: auto;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div id="quote-card" class="card">
+          <div class="card-body">
+           <h4> <i class="fas fa-quote-left large" id="quote-icon"></i><p class="card-text" id="quote-text">Click the button below to generate a quote.</p> </h4>
+            <h3> <div id="author"></div> </h3>
+            <button id="generate-btn" class="btn btn-primary btn-block"> <h4> Generate Quote</h4></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and jQuery (Popper.js is required for Bootstrap) -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- FontAwesome JS (Replace the version number with the latest version) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+
+  <!-- Custom JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const quoteText = document.getElementById('quote-text');
+      const authorElement = document.getElementById('author');
+      const quoteIcon = document.getElementById('quote-icon');
+      const generateBtn = document.getElementById('generate-btn');
+      let clickCount = 0;
+
+      function fetchQuote() {
+        // Replace the fetch URL with your API endpoint
+        fetch("https://type.fit/api/quotes")
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(data) {
+            const randomIndex = Math.floor(Math.random() * data.length);
+            const randomQuote = data[randomIndex].text;
+            const author = data[randomIndex].author || "Anonymous";
+            quoteText.textContent = randomQuote;
+            authorElement.textContent = `— ${author}`;
+          });
+
+        // Change background color, text/button color based on click count
+        const colors = ["#007bff", "#adb5bd", "#ffc107", "#6f42c1", "#28a745", "#964b00"];
+        const textColor = colors[clickCount % colors.length];
+        document.body.style.backgroundColor = colors[clickCount % colors.length];
+        quoteText.style.color = textColor;
+        authorElement.style.color = textColor;
+        generateBtn.style.backgroundColor = textColor;
+        generateBtn.style.color = "#ffffff"; // White text color for button
+        quoteIcon.style.color = textColor; // Set the icon color to match the text color
+    clickCount++;
+      }
+
+      generateBtn.addEventListener('click', fetchQuote);
+
+      // Initial quote on page load
+      fetchQuote();
+    });
+  </script>
+  <!-- Footer -->
+  <div class="footer">
+    <p">All rights reservered &copy; Copyright <span id="currentYear"> </span><a href="index.html">Muhamad Bari</a></p>
+  </div>
+</body>
+</html>

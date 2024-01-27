@@ -106,3 +106,5 @@ paper_div.addEventListener('click', () => game('paper'));
 scissors_div.addEventListener('click', () => game('scissors'));
 }
 main();
+// Mengisi tahun saat ini secara dinamis
+document.getElementById('currentYear').textContent = new Date().getFullYear();

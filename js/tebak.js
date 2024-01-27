@@ -1,195 +1,157 @@
-const moves = document.getElementById("moves-count");
-const timeValue = document.getElementById("time");
-const startButton = document.getElementById("start");
-const stopButton = document.getElementById("stop");
-const gameContainer = document.querySelector(".game-container");
-const result = document.getElementById("result");
-const controls = document.querySelector(".controls-container");
-let cards;
-let interval;
-let firstCard = false;
-let secondCard = false;
+'use strict';
 
-//Items array
-const items = [
-  { name: "bee", image: "img/memory/bee.png" },
-  { name: "crocodile", image: "img/memory/crocodile.png" },
-  { name: "macaw", image: "img/memory/macaw.png" },
-  { name: "gorilla", image: "img/memory/gorilla.png" },
-  { name: "tiger", image: "img/memory/tiger.png" },
-  { name: "monkey", image: "img/memory/monkey.png" },
-  { name: "chameleon", image: "img/memory/chameleon.png" },
-  { name: "piranha", image: "img/memory/piranha.png" },
-  { name: "anaconda", image: "img/memory/anaconda.png" },
-  { name: "sloth", image: "img/memory/sloth.png" },
-  { name: "cockatoo", image: "img/memory/cockatoo.png" },
-  { name: "toucan", image: "img/memory/toucan.png" },
-];
-
-//Initial Time
-let seconds = 0,
-  minutes = 0;
-//Initial moves and win count
-let movesCount = 0,
-  winCount = 0;
-
-//For timer
-const timeGenerator = () => {
-  seconds += 1;
-  //minutes logic
-  if (seconds >= 60) {
-    minutes += 1;
-    seconds = 0;
-  }
-  //format time before displaying
-  let secondsValue = seconds < 10 ? `0${seconds}` : seconds;
-  let minutesValue = minutes < 10 ? `0${minutes}` : minutes;
-  timeValue.innerHTML = `<span>Time:</span>${minutesValue}:${secondsValue}`;
+const cards = {
+	box1: 'box2',
+	box2: 'box1',
+	box3: 'box4',
+	box4: 'box3',
+	box5: 'box6',
+	box6: 'box5',
+	box7: 'box8',
+	box8: 'box7',
+	box9: 'box10',
+	box10: 'box9',
+	box11: 'box12',
+	box12: 'box11',
+	box13: 'box14',
+	box14: 'box13',
+	box15: 'box16',
+	box16: 'box15',
+	box17: 'box18',
+	box18: 'box17'
 };
 
-const movesCounter = () => {
-  // Cek apakah jumlah langkah sudah mencapai 15
-  if (movesCount < 15) {
-    movesCount += 1;
-    moves.innerHTML = `<span>Moves:</span>${movesCount}`;
-  }
+//CARBON == MAIN PANEL !
+const carbon = document.querySelector('.carbon');
+const time = document.querySelector('.time');
+const counter = document.querySelector('.counter');
+const circle1 = document.querySelector('.panel__one');
+const circle2 = document.querySelector('.panel__two');
+const circle3 = document.querySelector('.panel__three');
+const container = document.querySelector('.container');
+const box = Array.from(document.querySelectorAll('.box'));
+const audio = new Audio('https://loudlinks.rocks/sounds/mp3/magic.mp3');
 
-  // Tambahkan kondisi untuk menghentikan permainan jika movesCount mencapai 15
-  if (movesCount === 15) {
-    // Hentikan permainan atau tambahkan logika lain yang sesuai
-    result.innerHTML = `<h2>Game Over</h2>
-      <h4>Too many moves!</h4>`;
-    stopGame();
-  }
-};
+let correct_flips = 0;
+let last_flipped = [];
+let moves = 0;
+let seconds = 0;
+let minutes = 0;
+let seconds_str = '';
+let minutes_str = '';
+let timer_observer;
 
-//Pick random objects from the items array
-const generateRandom = (size = 4) => {
-  //temporary array
-  let tempArray = [...items];
-  //initializes cardValues array
-  let cardValues = [];
-  //size should be double (4*4 matrix)/2 since pairs of objects would exist
-  size = (size * size) / 2;
-  //Random object selection
-  for (let i = 0; i < size; i++) {
-    const randomIndex = Math.floor(Math.random() * tempArray.length);
-    cardValues.push(tempArray[randomIndex]);
-    //once selected remove the object from temp array
-    tempArray.splice(randomIndex, 1);
-  }
-  return cardValues;
-};
+container.innerHTML = '';
 
-const matrixGenerator = (cardValues, size = 4) => {
-  gameContainer.innerHTML = "";
-  cardValues = [...cardValues, ...cardValues];
-  //simple shuffle
-  cardValues.sort(() => Math.random() - 0.5);
-  for (let i = 0; i < size * size; i++) {
-    /*
-        Create Cards
-        before => front side (contains question mark)
-        after => back side (contains actual image);
-        data-card-values is a custom attribute which stores the names of the cards to match later
-      */
-    gameContainer.innerHTML += `
-     <div class="card-container" data-card-value="${cardValues[i].name}">
-        <div class="card-before">?</div>
-        <div class="card-after">
-        <img src="${cardValues[i].image}" class="image" style="max-width: 80%" "max-height: 80%"/></div>
-     </div>
-     `;
-  }
-  //Grid
-  gameContainer.style.gridTemplateColumns = `repeat(${size},auto)`;
+function flipOnClick(e) {
+	moves++;
+	counter.innerHTML = moves;
+	const element = e.target;
+	last_flipped.push(element);
+	element.classList.add('flipped');
+	// console.log(last_flipped.length);
+	compareFlipped(last_flipped);
+}
 
-  //Cards
-  cards = document.querySelectorAll(".card-container");
-  cards.forEach((card) => {
-    card.addEventListener("click", () => {
-      //If selected card is not matched yet then only run (i.e already matched card when clicked would be ignored)
-      if (!card.classList.contains("matched")) {
-        //flip the cliked card
-        card.classList.add("flipped");
-        //if it is the firstcard (!firstCard since firstCard is initially false)
-        if (!firstCard) {
-          //so current card will become firstCard
-          firstCard = card;
-          //current cards value becomes firstCardValue
-          firstCardValue = card.getAttribute("data-card-value");
-        } else {
-          //increment moves since user selected second card
-          movesCounter();
-          //secondCard and value
-          secondCard = card;
-          let secondCardValue = card.getAttribute("data-card-value");
-          if (firstCardValue == secondCardValue) {
-            //if both cards match add matched class so these cards would beignored next time
-            firstCard.classList.add("matched");
-            secondCard.classList.add("matched");
-            //set firstCard to false since next card would be first now
-            firstCard = false;
-            //winCount increment as user found a correct match
-            winCount += 1;
-            //check if winCount ==half of cardValues
-            if (winCount == Math.floor(cardValues.length / 2)) {
-              result.innerHTML = `<h2>You Won</h2>
-            <h4>Moves: ${movesCount}</h4>`;
-              stopGame();
-            }
-          } else {
-            //if the cards dont match
-            //flip the cards back to normal
-            let [tempFirst, tempSecond] = [firstCard, secondCard];
-            firstCard = false;
-            secondCard = false;
-            let delay = setTimeout(() => {
-              tempFirst.classList.remove("flipped");
-              tempSecond.classList.remove("flipped");
-            }, 900);
-          }
-        }
-      }
-    });
-  });
-};
+function compareFlipped(array) {
+	if (array.length > 2) {
+		array.forEach(el => el.classList.remove('flipped'));
+		last_flipped = [];
+	}
+	if (array.length == 2) {
+		const card1 = array[0].classList[1];
+		const card2 = array[1].classList[1];
+		// console.log(cards[card1], cards[card2]);
+		if (cards[card1] == card2 || cards[card2] == card1) {
+			// console.log('Yay its a match');
+			const c1 = document
+				.getElementsByClassName(card1)[0]
+				.firstElementChild.classList.add('matchingcards');
+			const c2 = document
+				.getElementsByClassName(card2)[0]
+				.firstElementChild.classList.add('matchingcards');
+			correct_flips += 1;
+			last_flipped = [];
+		} else {
+			setTimeout(() => {
+				array.forEach(el => el.classList.remove('flipped'));
+				last_flipped = [];
+			}, 700);
+		}
+	}
+}
 
-//Start game
-startButton.addEventListener("click", () => {
-  movesCount = 0;
-  seconds = 0;
-  minutes = 0;
-  //controls amd buttons visibility
-  controls.classList.add("hide");
-  stopButton.classList.remove("hide");
-  startButton.classList.add("hide");
-  //Start timer
-  interval = setInterval(timeGenerator, 1000);
-  //initial moves
-  moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
-  initializer();
+function spreadCards(array) {
+	let new_Arr = array.filter(el => array.indexOf(el) % 2 == 0);
+	while (0 < new_Arr.length) {
+		const num = Math.floor(Math.random() * new_Arr.length);
+		const pick = new_Arr[num];
+		container.appendChild(pick);
+		// console.log(container);
+		new_Arr.splice(num, 1);
+	}
+}
+
+function startWatching(seconds, minutes) {
+	timer_observer = setInterval(() => {
+		seconds > 58 ? ((minutes += 1), (seconds = 0)) : (seconds += 1);
+		seconds_str = seconds > 9 ? `${seconds}` : `0${seconds}`;
+		minutes_str = minutes > 9 ? `${minutes}` : `0${minutes}`;
+		time.innerHTML = `${minutes_str}:${seconds_str}`;
+		if (correct_flips >= 9) {
+			audio.play();
+			clearInterval(timer_observer);
+			gameWonParty(moves);
+			return;
+		}
+		// console.log(minutes, seconds_str);
+	}, 1000);
+}
+
+function startGame() {
+	correct_flips = 0;
+	last_flipped = [];
+	moves = 0;
+	seconds = 0;
+	minutes = 0;
+	seconds_str = '';
+	minutes_str = '';
+	time.innerHTML = 'XX:XX';
+	counter.innerHTML = '0';
+	container.innerHTML = '';
+	box.forEach(el => el.classList.remove('flipped'));
+	clearInterval(timer_observer);
+	spreadCards(box);
+	container.childNodes.forEach(node =>
+		node.firstElementChild.classList.remove('matchingcards')
+	);
+	startWatching(seconds, minutes);
+}
+
+function gameWonParty(moves) {
+	// const audio = new Audio('https://loudlinks.rocks/sounds/mp3/magic.mp3');
+	audio.play();
+	// alert(`You Won with just ${moves} moves !`);
+	//NOTE: make a fancy celebration with canvas
+}
+
+box.forEach(el => el.addEventListener('click', flipOnClick));
+
+circle1.addEventListener('click', (e) => {
+	clearInterval(timer_observer);
+	container.innerHTML = '';
+	time.innerHTML = 'XX:XX';
+	counter.innerHTML = '0';
 });
 
-//Stop game
-stopButton.addEventListener(
-  "click",
-  (stopGame = () => {
-    controls.classList.remove("hide");
-    stopButton.classList.add("hide");
-    startButton.classList.remove("hide");
-    clearInterval(interval);
-  })
-);
-
-//Initialize values and func calls
-const initializer = () => {
-  result.innerText = "";
-  winCount = 0;
-  let cardValues = generateRandom();
-  console.log(cardValues);
-  matrixGenerator(cardValues);
-};
-
+circle2.addEventListener('click', (e) => {
+	carbon.style.height = '85%';
+	carbon.style.width = '65%';
+});
+//green circle
+circle3.addEventListener('click', (e) => {
+	carbon.style.height = '90%';
+	carbon.style.width = '90%';
+});
 // Mengisi tahun saat ini secara dinamis
 document.getElementById('currentYear').textContent = new Date().getFullYear();

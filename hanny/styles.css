@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
+
+  .love {
+    position: absolute;
+    font-size: 24px;
+    color: red;
+    animation: fall 5s linear infinite;
+  }
+
+  .rose {
+    position: absolute;
+    top: 35%; /* Mulai dari bawah */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    transition: top 2s ease, opacity 2s ease; /* Perbarui durasi transisi menjadi 2 detik */
+    color: red;
+}
+
+.ascii-art {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px; /* Sesuaikan ukuran font sesuai kebutuhan */
+    opacity: 1;
+    transition: top 2s ease, opacity 2s ease; /* Perbarui durasi transisi menjadi 2 detik */
+    color: red;
+  }
+  
+  .flower {
+    font-family: monospace;
+    white-space: pre;
+  }
+  
+  @keyframes dance {
+    0%, 100% { transform: translate(-50%, -50%) rotate(0); }
+    25%, 75% { transform: translate(-50%, -50%) rotate(10deg); }
+    50% { transform: translate(-50%, -50%) rotate(-10deg); }
+  }
+  
+  @keyframes rise {
+    0% { top: 100%; opacity: 0; }
+    100% { top: 50%; opacity: 1; }
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-100vh); }
+    100% { transform: translateY(100vh); }
+  }
+
+  @media screen and (max-width: 768px) {
+    .ascii-art {
+      font-size: 16px; /* Ukuran font yang lebih kecil untuk layar kecil */
+    }
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  .ascii-art, .rose {
+    animation: blink 3s infinite; /* Ganti nilai 1s sesuai kecepatan kedip-kedip yang diinginkan */
+    font-size: 1vw;
+  }
